@@ -74,3 +74,12 @@ vim.api.nvim_create_autocmd({ "InsertLeave", "CmdlineLeave" }, {
   end,
 })
 
+vim.api.nvim_create_autocmd("TextYankPost", {
+  callback = function()
+    vim.highlight.on_yank({
+      higroup = "incsearch",
+      timeout = 200,
+      on_visual = true,
+    })
+  end,
+})
