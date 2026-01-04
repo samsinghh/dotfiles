@@ -51,6 +51,7 @@ alias pip='pip3'
 
 # UTCS SSH username for utcs-ssh
 export UTCS_SSH_USERNAME="samyak"
+export TERM=xterm-256color
 
 # [[ -f "$HOME/.zshrc.private" ]] && source "$HOME/.zshrc.private"
 
