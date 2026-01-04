@@ -2,10 +2,10 @@ return {
   {
     "catppuccin/nvim",
     name = "catppuccin",
-    priority = 1000, -- load before everything else
+    priority = 1000,
     config = function()
       require("catppuccin").setup({
-        flavour = "mocha", -- latte, frappe, macchiato, mocha
+        flavour = "mocha",
         integrations = {
           treesitter = true,
           lsp_trouble = true,
@@ -14,8 +14,14 @@ return {
           gitsigns = true,
         },
       })
-
-      vim.cmd.colorscheme("catppuccin")
+    end,
+  },
+  {
+    "datsfilipe/vesper.nvim",
+    name = "vesper",
+    priority = 1000,
+    config = function()
+      vim.cmd.colorscheme("vesper")
     end,
   },
 }

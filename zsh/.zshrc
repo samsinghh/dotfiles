@@ -124,3 +124,7 @@ export PATH="$HOME/.npm-global/bin:$PATH"
 
 bindkey -v
 KEYTIMEOUT=1
+
+export PATH=$PATH:/Users/samsingh/.spicetify
+export PATH="$HOME/.tmuxifier/bin:$PATH"
+eval "$(tmuxifier init -)"

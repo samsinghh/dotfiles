@@ -83,3 +83,5 @@ vim.api.nvim_create_autocmd("TextYankPost", {
     })
   end,
 })
+
+vim.opt.fillchars:append({ eob = " " })
