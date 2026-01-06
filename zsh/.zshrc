@@ -49,6 +49,7 @@ KEYTIMEOUT=1
 # Aliases
 alias pip='pip3'
 alias python='python3'
+alias vim='nvim'
 
 # UTCS SSH username for utcs-ssh
 export UTCS_SSH_USERNAME="samyak"
