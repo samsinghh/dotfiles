@@ -55,5 +55,3 @@ alias vim='nvim'
 export UTCS_SSH_USERNAME="samyak"
 export TERM=xterm-256color
 
-# [[ -f "$HOME/.zshrc.private" ]] && source "$HOME/.zshrc.private"
-
