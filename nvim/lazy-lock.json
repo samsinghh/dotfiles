@@ -1,5 +1,5 @@
 {
-  "99": { "branch": "master", "commit": "37af3054f8e2278d5a5a1308c81e5bb06f6395a1" },
+  "99": { "branch": "master", "commit": "91ea4cfd4a46d756152e9470abe495f4b178e818" },
   "Comment.nvim": { "branch": "master", "commit": "e30b7f2008e52442154b66f7c519bfd2f1e32acb" },
   "catppuccin": { "branch": "main", "commit": "beaf41a30c26fd7d6c386d383155cbd65dd554cd" },
   "cmp-nvim-lsp": { "branch": "main", "commit": "cbc7b02bb99fae35cb42f514762b89b5126651ef" },
@@ -13,7 +13,7 @@
   "nvim-treesitter": { "branch": "main", "commit": "2ba5ec184609a96b513bf4c53a20512d64e27f39" },
   "nvim-ts-autotag": { "branch": "main", "commit": "c4ca798ab95b316a768d51eaaaee48f64a4a46bc" },
   "nvim-web-devicons": { "branch": "master", "commit": "6788013bb9cb784e606ada44206b0e755e4323d7" },
-  "opencode.nvim": { "branch": "main", "commit": "5707270a5421a290b0548c1790200679e5c83702" },
+  "opencode.nvim": { "branch": "main", "commit": "17d0aad778fb2fed18f1fbd66e6e5f5b938d53f3" },
   "plenary.nvim": { "branch": "master", "commit": "b9fd5226c2f76c951fc8ed5923d85e4de065e509" },
   "snacks.nvim": { "branch": "main", "commit": "fe7cfe9800a182274d0f868a74b7263b8c0c020b" },
   "telescope.nvim": { "branch": "master", "commit": "3333a52ff548ba0a68af6d8da1e54f9cd96e9179" },

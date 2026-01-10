@@ -8,10 +8,9 @@ return {
     vim.g.opencode_opts = {
       -- Let opencode.nvim manage an instance if it can't find one in the CWD
       provider = {
-        enabled = "terminal", -- or "snacks" if you prefer snacks.terminal
+        enabled = "snacks", -- or "snacks" if you prefer snacks.terminal
         terminal = {
           -- if you dislike being forced into insert mode in the opencode pane:
-          auto_insert = false,
         },
       },
 
