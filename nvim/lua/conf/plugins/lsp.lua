@@ -35,6 +35,7 @@ return {
 
     -- Mason-lspconfig setup
     require("mason-lspconfig").setup({
+      ensure_installed = { "texlab" },
       handlers = {
         -- Default handler for automatically configuring installed servers
         function(server_name)

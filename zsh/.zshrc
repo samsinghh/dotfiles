@@ -50,8 +50,12 @@ KEYTIMEOUT=1
 alias pip='pip3'
 alias python='python3'
 alias vim='nvim'
+alias ut-mount='sshfs -o reconnect,noappledouble,noapplexattr samyak@linux.cs.utexas.edu:/u/samyak ~/utcs'
+alias ut-unmount='diskutil unmount ~/utcs || diskutil unmount force ~/utcs'
 
 # UTCS SSH username for utcs-ssh
 export UTCS_SSH_USERNAME="samyak"
 export TERM=xterm-256color
 
+# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
+[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
