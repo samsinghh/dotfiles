@@ -33,20 +33,15 @@ return {
       },
     })
 
-    -- Mason-lspconfig setup
+    -- Defaults for every server. Must come before mason-lspconfig's setup().
+    vim.lsp.config("*", {
+      capabilities = require("cmp_nvim_lsp").default_capabilities(),
+    })
+
+    -- Mason-lspconfig setup. Installed servers are enabled automatically;
+    -- per-server tweaks go through vim.lsp.config("texlab", { ... }).
     require("mason-lspconfig").setup({
       ensure_installed = { "texlab" },
-      handlers = {
-        -- Default handler for automatically configuring installed servers
-        function(server_name)
-          require("lspconfig")[server_name].setup({}) end,
-
-        -- You can add custom handlers for specific servers here
-        -- For example:
-        -- tsserver = function(_, opts)
-        --   require("lspconfig").tsserver.setup(opts)
-        -- end,
-      },
     })
 
     local cmp = require("cmp")

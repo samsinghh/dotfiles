@@ -61,15 +61,25 @@ vim.cmd("autocmd BufEnter * setlocal formatoptions-=cro")
 
 vim.opt.shortmess:append("c")
 
--- Relative numbers in normal mode, absolute in insert / command mode
+-- Relative numbers in normal mode, absolute in insert / command mode.
+local function skip_numbering()
+  return vim.bo.filetype == "NvimTree"
+end
+
 vim.api.nvim_create_autocmd({ "InsertEnter", "CmdlineEnter" }, {
   callback = function()
+    if skip_numbering() then
+      return
+    end
     vim.opt.relativenumber = false
   end,
 })
 
 vim.api.nvim_create_autocmd({ "InsertLeave", "CmdlineLeave" }, {
   callback = function()
+    if skip_numbering() then
+      return
+    end
     vim.opt.relativenumber = true
   end,
 })
