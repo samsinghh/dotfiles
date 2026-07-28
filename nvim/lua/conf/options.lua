@@ -17,12 +17,12 @@ local options = {
   smartindent = true,
   splitbelow = true,
   splitright = true,
-  swapfile = false,
+  swapfile = true,
   termguicolors = true,
   timeoutlen = 1000,
   undofile = true,
   updatetime = 300,
-  writebackup = false,
+  writebackup = true,
   expandtab = true,
   shiftwidth = 4,
   tabstop = 4,
@@ -42,6 +42,16 @@ for k, v in pairs(options) do
   vim.opt[k] = v
 end
 
+local state_dir = vim.fn.stdpath("state")
+for _, name in ipairs({ "backup", "swap", "undo" }) do
+  local path = state_dir .. "/" .. name
+  pcall(vim.fn.mkdir, path, "p")
+  assert(vim.fn.isdirectory(path) == 1, "Failed to create Neovim state directory: " .. path)
+end
+vim.opt.backupdir = state_dir .. "/backup//"
+vim.opt.directory = state_dir .. "/swap//"
+vim.opt.undodir = state_dir .. "/undo//"
+
 -- Create an autocommand group for file-specific settings
 vim.api.nvim_create_augroup("FileTypeSpecific", { clear = true })
 
@@ -56,8 +66,11 @@ vim.api.nvim_create_autocmd("FileType", {
 })
 
 -- Disable automatic comment insertion
-vim.cmd("autocmd BufEnter * set formatoptions-=cro")
-vim.cmd("autocmd BufEnter * setlocal formatoptions-=cro")
+vim.api.nvim_create_autocmd({ "BufEnter", "FileType" }, {
+  callback = function()
+    vim.opt_local.formatoptions:remove({ "c", "r", "o" })
+  end,
+})
 
 vim.opt.shortmess:append("c")
 
@@ -71,7 +84,7 @@ vim.api.nvim_create_autocmd({ "InsertEnter", "CmdlineEnter" }, {
     if skip_numbering() then
       return
     end
-    vim.opt.relativenumber = false
+    vim.opt_local.relativenumber = false
   end,
 })
 
@@ -80,7 +93,7 @@ vim.api.nvim_create_autocmd({ "InsertLeave", "CmdlineLeave" }, {
     if skip_numbering() then
       return
     end
-    vim.opt.relativenumber = true
+    vim.opt_local.relativenumber = true
   end,
 })
 

@@ -7,5 +7,4 @@ macos-titlebar-style = transparent
 macos-titlebar-proxy-icon = hidden
 title = " "
 macos-option-as-alt = true
-background-blur-radius = 20
 macos-icon = custom

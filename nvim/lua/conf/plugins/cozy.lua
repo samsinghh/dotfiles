@@ -15,8 +15,7 @@ return {
       up_key = 'k',
       down_key = 'j',
 
-      -- Line numbers will be completely hidden for the following file/buffer types
-      hidden_file_types = { 'undotree' },
+      -- Line numbers will be completely hidden for the following buffer types
       hidden_buffer_types = { 'terminal', 'nofile' }
     })
   end,

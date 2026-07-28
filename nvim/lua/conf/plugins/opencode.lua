@@ -1,20 +1,24 @@
+local opencode_cmd = "opencode --port"
+local terminal_opts = {
+  win = {
+    position = "right",
+    enter = false,
+  },
+}
+
 return {
   "NickvanDyke/opencode.nvim",
   dependencies = {
     -- recommended for ask()/select(); required if you choose the snacks provider
     { "folke/snacks.nvim", opts = { input = {}, picker = {}, terminal = {} } },
   },
-  config = function()
+  init = function()
     vim.g.opencode_opts = {
-      -- Let opencode.nvim manage an instance if it can't find one in the CWD
-      provider = {
-        enabled = "snacks", -- or "snacks" if you prefer snacks.terminal
-        terminal = {
-          -- if you dislike being forced into insert mode in the opencode pane:
-        },
+      server = {
+        start = function()
+          require("snacks.terminal").open(opencode_cmd, terminal_opts)
+        end,
       },
-
-      -- optional: make buffer reloads work when opencode edits files
       events = {
         reload = true,
       },
@@ -22,28 +26,48 @@ return {
 
     -- Required for reload-on-edit behavior per README
     vim.o.autoread = true
-
-    -- Keymaps: do NOT hijack Ctrl-x / Ctrl-a
-    local op = require("opencode")
-    vim.keymap.set({ "n", "x" }, "<leader>oa", function()
-      op.ask("@this: ", { submit = true })
-    end, { desc = "opencode: ask about selection/cursor" })
-
-    vim.keymap.set({ "n", "x" }, "<leader>os", function()
-      op.select()
-    end, { desc = "opencode: select action/target" })
-
-    vim.keymap.set({ "n", "t" }, "<leader>oo", function()
-      op.toggle()
-    end, { desc = "opencode: toggle UI" })
-
-    -- Optional but very good: operator to send an arbitrary motion/range
-    vim.keymap.set({ "n", "x" }, "go", function()
-      return op.operator("@this ")
-    end, { expr = true, desc = "opencode: add range (operator)" })
-    vim.keymap.set("n", "goo", function()
-      return op.operator("@this ") .. "_"
-    end, { expr = true, desc = "opencode: add line" })
   end,
+  keys = {
+    {
+      "<leader>oa",
+      function()
+        require("opencode").ask("@this: ")
+      end,
+      mode = { "n", "x" },
+      desc = "opencode: ask about selection/cursor",
+    },
+    {
+      "<leader>os",
+      function()
+        require("opencode").select()
+      end,
+      mode = { "n", "x" },
+      desc = "opencode: select action/target",
+    },
+    {
+      "<leader>oo",
+      function()
+        require("snacks.terminal").toggle(opencode_cmd, terminal_opts)
+      end,
+      mode = { "n", "t" },
+      desc = "opencode: toggle UI",
+    },
+    {
+      "<leader>or",
+      function()
+        return require("opencode").operator("@this ")
+      end,
+      mode = { "n", "x" },
+      expr = true,
+      desc = "opencode: add range",
+    },
+    {
+      "<leader>ol",
+      function()
+        return require("opencode").operator("@this ") .. "_"
+      end,
+      expr = true,
+      desc = "opencode: add line",
+    },
+  },
 }
-

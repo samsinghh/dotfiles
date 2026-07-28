@@ -2,10 +2,12 @@ return {
   "lervag/vimtex",
   lazy = false, -- VimTeX recommends against lazy-loading; it manages its own ft hooks
   init = function()
-    -- viewer: Skim, with forward search + auto-refresh
-    vim.g.vimtex_view_method = "skim"
-    vim.g.vimtex_view_skim_sync = 1      -- forward search after compile
-    vim.g.vimtex_view_skim_activate = 1  -- bring Skim to focus
+    if vim.fn.has("macunix") == 1 then
+      -- Skim provides forward search and auto-refresh on macOS.
+      vim.g.vimtex_view_method = "skim"
+      vim.g.vimtex_view_skim_sync = 1
+      vim.g.vimtex_view_skim_activate = 1
+    end
 
     -- build with latexmk
     vim.g.vimtex_compiler_method = "latexmk"

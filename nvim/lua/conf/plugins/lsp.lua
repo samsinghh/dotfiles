@@ -1,7 +1,9 @@
 return {
   "neovim/nvim-lspconfig",
+  event = { "BufReadPre", "BufNewFile" },
+  cmd = { "LspInfo", "LspLog", "LspRestart", "LspStart", "LspStop" },
   dependencies = {
-    "williamboman/mason.nvim",
+    { "williamboman/mason.nvim", cmd = "Mason", opts = {} },
     "williamboman/mason-lspconfig.nvim",
     "hrsh7th/cmp-nvim-lsp",
     "hrsh7th/nvim-cmp",
@@ -28,11 +30,6 @@ return {
 
 
     -- Mason setup
-    require("mason").setup({
-      ensure_installed = {
-      },
-    })
-
     -- Defaults for every server. Must come before mason-lspconfig's setup().
     vim.lsp.config("*", {
       capabilities = require("cmp_nvim_lsp").default_capabilities(),
@@ -136,4 +133,3 @@ return {
   })
   end
 }
-
