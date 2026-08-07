@@ -72,16 +72,12 @@ KEYTIMEOUT=1
 alias pip='pip3'
 alias python='python3'
 alias vim='nvim'
-if [[ "$OSTYPE" == darwin* ]]; then
-  alias ut-mount='sshfs -o reconnect,noappledouble,noapplexattr samyak@linux.cs.utexas.edu:/u/samyak ~/utcs'
-  alias ut-unmount='diskutil unmount ~/utcs || diskutil unmount force ~/utcs'
-fi
-
-# UTCS SSH username for utcs-ssh
-export UTCS_SSH_USERNAME="samyak"
 
 export NVM_DIR="$HOME/.nvm"
 if [[ -s "$NVM_DIR/nvm.sh" ]]; then
   source "$NVM_DIR/nvm.sh"
   [[ -s "$NVM_DIR/bash_completion" ]] && source "$NVM_DIR/bash_completion"
 fi
+
+# Machine-specific aliases, credentials, and environment variables.
+[[ -r "$HOME/.zshrc.local" ]] && source "$HOME/.zshrc.local"
