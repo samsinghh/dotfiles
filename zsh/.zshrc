@@ -82,15 +82,6 @@ export UTCS_SSH_USERNAME="samyak"
 
 export NVM_DIR="$HOME/.nvm"
 if [[ -s "$NVM_DIR/nvm.sh" ]]; then
-  _load_nvm() {
-    unfunction nvm node npm npx
-    source "$NVM_DIR/nvm.sh" || return
-    [[ -s "$NVM_DIR/bash_completion" ]] && source "$NVM_DIR/bash_completion"
-    return 0
-  }
-
-  nvm()  { _load_nvm && nvm "$@"; }
-  node() { _load_nvm && command node "$@"; }
-  npm()  { _load_nvm && command npm "$@"; }
-  npx()  { _load_nvm && command npx "$@"; }
+  source "$NVM_DIR/nvm.sh"
+  [[ -s "$NVM_DIR/bash_completion" ]] && source "$NVM_DIR/bash_completion"
 fi
