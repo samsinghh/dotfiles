@@ -45,7 +45,8 @@ timestamp() { date +%Y%m%d%H%M%S; }
 backup_if_needed() {
   local target="$1"
   if [[ -e "$target" || -L "$target" ]]; then
-    local backup="${target}.bak.$(timestamp)"
+    local backup
+    backup="${target}.bak.$(timestamp)"
     warn "Backing up existing $target -> $backup"
     mv "$target" "$backup"
   fi
