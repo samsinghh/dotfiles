@@ -1,0 +1,11 @@
+brew "git"
+brew "tmux"
+brew "neovim"
+brew "ripgrep"
+brew "python"
+brew "opencode"
+
+cask "ghostty"
+cask "font-jetbrains-mono-nerd-font"
+cask "basictex"
+cask "skim"

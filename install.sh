@@ -19,6 +19,7 @@ NVIM_SRC="$DOTFILES_DIR/nvim"
 TMUX_SRC="$DOTFILES_DIR/tmux/.tmux.conf"
 ZSH_SRC="$DOTFILES_DIR/zsh/.zshrc"
 GHOSTTY_SRC="$DOTFILES_DIR/ghostty"
+BREWFILE="$DOTFILES_DIR/Brewfile"
 
 # Targets on system
 NVIM_DST="$HOME/.config/nvim"
@@ -96,8 +97,12 @@ install_packages() {
       err "Homebrew is required on macOS: https://brew.sh"
       exit 1
     }
-    info "Installing packages via Homebrew"
-    brew install git zsh tmux neovim ripgrep
+    [[ -f "$BREWFILE" ]] || {
+      err "Brewfile not found: $BREWFILE"
+      exit 1
+    }
+    info "Installing packages and applications from Brewfile"
+    brew bundle install --no-upgrade --file="$BREWFILE"
   else
     err "Unsupported platform or package manager (supported: macOS/Homebrew and Debian/Ubuntu apt-get)."
     exit 1
