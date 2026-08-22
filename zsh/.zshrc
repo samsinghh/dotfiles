@@ -64,6 +64,18 @@ if [[ -r "$HOME/.tmuxifier/init.sh" ]]; then
   source "$HOME/.tmuxifier/init.sh"
 fi
 
+# Enter the permanent tmux workspace from a shell, or return to it from tmux.
+t() {
+  if [[ -n "$TMUX" ]]; then
+    if ! tmux has-session -t main 2>/dev/null; then
+      tmux new-session -d -s main -c "$HOME"
+    fi
+    tmux switch-client -t main
+  else
+    tmux new-session -A -s main -c "$HOME"
+  fi
+}
+
 # Keybinds
 bindkey -v
 KEYTIMEOUT=1
